@@ -1,0 +1,104 @@
+{
+  "request": {
+    "method": "$ClientRequestMethod",
+    "host": "$ClientRequestHost",
+    "url": "$ClientRequestURI",
+    "protocol": "$ClientRequestProtocol",
+    "restarts": 0,
+    "is_ipv6": false,
+    "backend": "Helix_Pages",
+    "header_size": "$ClientRequestBytes",
+    "body_size": 0,
+    "headers": {
+      "referer": "$ClientRequestReferer",
+      "user_agent": "$ClientRequestUserAgent",
+      "user_agent_type": "$ClientDeviceType",
+      "accept_content": "$RequestHeadersaccept",
+      "accept_language": "$RequestHeadersacceptLanguage",
+      "accept_encoding": "$RequestHeadersacceptEncoding",
+      "accept_charset": "$RequestHeadersacceptCharset",
+      "if_modified_since": "$RequestHeadersifModifiedSince",
+      "connection": "$RequestHeadersconnection",
+      "forwarded": "$RequestHeadersforwarded",
+      "cdn_loop": "$RequestHeaderscdnLoop",
+      "via": "$RequestHeadersvia",
+      "cache_control": "$RequestHeaderscacheControl",
+      "x_forwarded_host": "$RequestHeadersxForwardedHost",
+      "x_forwarded_for": "$RequestHeadersxForwardedFor",
+      "x_push_invalidation": "$RequestHeadersxPushInvalidation",
+      "x_byo_cdn_type": "$RequestHeadersxByoCdnType"
+    }
+  },
+  "response": {
+    "status": "$EdgeResponseStatus",
+    "header_size": "$EdgeResponseBytes",
+    "body_size": "EdgeResponseBodyBytes",
+    "headers": {
+      "content_type": "$EdgeResponseContentType",
+      "content_encoding": "$ResponseHeaderscontentEncoding",
+      "age": "$ResponseHeadersage",
+      "cache_control": "$ResponseHeaderscacheControl",
+      "expires": "$ResponseHeadersexpires",
+      "cdn_cache_control": "$ResponseHeaderscdnCacheControl",
+      "surrogate_control": "$ResponseHeaderssurrogateControl",
+      "last_modified": "$ResponseHeaderslastModified",
+      "vary": "$ResponseHeadervary",
+      "surrogate_key": "$ResponseHeaderssurrogateKey",
+      "x_robots_tag": "$ResponseHeadersxRobotsTag",
+      "x_error": "$ResponseHeadersxError",
+      "fastly_io_error": "",
+      "fastly_io_warning": "",
+      "fastly_io_info": "ifsz=1239159 idim=1200x843 ifmt=jpeg ofsz=237230 odim=1200x843 ofmt=webp"
+    }
+  },
+  "client": {
+    "name": "fastly",
+    "number": "$ClientASN",
+    "location_geopoint": {
+      "lat": 42.7,
+      "lon": 23.33
+    },
+    "city_name": "sofia",
+    "country_name": "bulgaria",
+    "ip": "$ClientIP"
+  },
+  "cdn": {
+    "originating_ip_geoip": {
+      "ip": "93.138.115.174",
+      "ip_ipaddr": "93.138.115.174",
+      "location_geopoint": {
+        "lat": 45.8616,
+        "lon": 15.8127
+      },
+      "continent_name": "Europe",
+      "country_name": "Croatia",
+      "city_name": "Zapre\u0161i\u0107",
+      "postal_code": "10291",
+      "request_source": "$ClientRequestSource"
+    },
+    "service_id": "$ZoneID",
+    "version": "172",
+    "url": "ClientRequestScheme://$EdgeRequestHost$EdgeRequestURI",
+    "originating_ip": "RequestHeadersxForwardedFor",
+    "fastly_client_ip": "93.138.115.174",
+    "time": {
+      "start": "EdgeStartTimestamp",
+      "start_msec": 1655209893901,
+      "end": "$EdgeEndTimestamp",
+      "end_msec": 1655209893954,
+      "elapsed": "$EdgeTimeToFirstByteMs"
+    },
+    "is_edge": false,
+    "visits_this_service": 2,
+    "fastly_ff": "f3M854ubvTI6r93AFpPS2R5cr9OccToZxPNT+3L7\/5M=!SOF!cache-sof1510020-SOF, f3M854ubvTI6r93AFpPS2R5cr9OccToZxPNT+3L7\/5M=!SOF!cache-sof1510029-SOF, d\/pSKZ8rlnWKwhuqLlOfEaT6D8DNve05rythR5w\/Q5M=!SOF!cache-sof1510029-SOF, d\/pSKZ8rlnWKwhuqLlOfEaT6D8DNve05rythR5w\/Q5M=!SOF!cache-sof1510064-SOF",
+    "datacenter": "$EdgeColoCode",
+    "hostname": "cache-iad-kjyo7100068",
+    "ip": "$EdgeServerIP",
+    "region_code": "US-East",
+    "is_cacheable": true,
+    "cache_status": "$CacheCacheStatus",
+    "is_h2": false,
+    "is_h2_push": false,
+    "fastly_error": ""
+  }
+}

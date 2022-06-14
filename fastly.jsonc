@@ -1,0 +1,116 @@
+{
+  "request": {
+    "method": "GET", // ClientRequestMethod
+    "host": "main--blog--adobe.hlx.live", // ClientRequestHost
+    "url": "\/jp\/publish\/2022\/06\/14\/media_1139bdf3cb11940c2454c7583c5315704bdbdf497.jpeg?width=2000&format=webply&optimize=medium", // ClientRequestURI
+    "protocol": "HTTP\/1.1", // ClientRequestProtocol
+    "restarts": 0,
+    "is_ipv6": false,
+    "backend": "Helix_Pages",
+    "header_size": 1579, // ClientRequestBytes
+    "body_size": 0,
+    "headers": {
+      // ClientRequestReferer
+      "referer": "https:\/\/blog.adobe.com\/jp\/publish\/2022\/06\/14\/cc-design-fresco-creative-relay-27-nanahara",
+      // ClientRequestUserAgent
+      "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/15.5 Safari\/605.1.15",
+      // ClientDeviceType
+      "user_agent_type": "desktop",
+      // RequestHeaders.accept
+      "accept_content": "image\/webp,image\/png,image\/svg+xml,image\/*;q=0.8,video\/*;q=0.8,*\/*;q=0.5",
+      // RequestHeaders.accept-language
+      "accept_language": "en-GB,en;q=0.9",
+      // RequestHeaders.accept-encoding
+      "accept_encoding": "gzip",
+      // RequestHeaders.accept-charset
+      "accept_charset": "",
+      // RequestHeaders.If-Modified-Since
+      "if_modified_since": "",
+      // RequestHeaders.If-Connection
+      "connection": "",
+      // RequestHeaders.Forwarded
+      "forwarded": "",
+      // RequestHeaders.cdn-loop
+      "cdn_loop": "Fastly, Fastly, Fastly, Fastly",
+      // RequestHeaders.via
+      "via": "",
+      // RequestHeaders.cache-control
+      "cache_control": "",
+      "x_forwarded_host": "blog.adobe.com, main--blog--adobe.hlx.live, main--blog--adobe.hlx.live",
+      "x_forwarded_for": "93.138.115.174, 146.75.2.122, 157.52.106.64",
+      "x_push_invalidation": "enabled",
+      "x_byo_cdn_type": "fastly"
+    }
+  },
+  "response": {
+    "status": "200", // EdgeResponseStatus
+    "header_size": 1181, // EdgeResponseBytes - EdgeResponseBodyBytes
+    "body_size": 237230, // EdgeResponseBodyBytes
+    "headers": {
+      "content_type": "image\/webp", // EdgeResponseContentType
+      "content_encoding": "", // 
+      "age": "",
+      "cache_control": "max-age=7200, must-revalidate",
+      "expires": "",
+      "cdn_cache_control": "",
+      "surrogate_control": "",
+      "last_modified": "",
+      "vary": "",
+      "surrogate_key": "main--blog--adobe 9b08ed882cc3217ceb23a3e71d769dbe47576312869465a0a302ed29c6d",
+      "x_robots_tag": "",
+      "x_error": "",
+      "fastly_io_error": "",
+      "fastly_io_warning": "",
+      "fastly_io_info": "ifsz=1239159 idim=1200x843 ifmt=jpeg ofsz=237230 odim=1200x843 ofmt=webp"
+    }
+  },
+  "client": {
+    "name": "fastly",
+    "number": 54113, // ClientASN
+    "location_geopoint": {
+      "lat": 42.7,
+      "lon": 23.33
+    },
+    "city_name": "sofia",
+    "country_name": "bulgaria",
+    "ip": "157.52.106.64" // ClientIP
+  },
+  "cdn": {
+    "originating_ip_geoip": {
+      "ip": "93.138.115.174",
+      "ip_ipaddr": "93.138.115.174",
+      "location_geopoint": {
+        "lat": 45.8616,
+        "lon": 15.8127
+      },
+      "continent_name": "Europe",
+      "country_name": "Croatia",
+      "city_name": "Zapre\u0161i\u0107",
+      "postal_code": "10291"
+    },
+    "service_id": "6v0sHgrPTGUGS5PHOXZ0H1",
+    "version": "172",
+    "url": "https:\/\/main--blog--adobe.hlx.live\/jp\/publish\/2022\/06\/14\/media_1139bdf3cb11940c2454c7583c5315704bdbdf497.jpeg?width=2000&format=webply&optimize=medium",
+    "originating_ip": "93.138.115.174", // X-Forwarded-For (first part)
+    "fastly_client_ip": "93.138.115.174",
+    "time": {
+      "start": "2022-06-14T12:31:33.901+0000", // EdgeStartTimestamp
+      "start_msec": 1655209893901,
+      "end": "2022-06-14T12:31:33.954+0000", // EdgeEndTimestamp
+      "end_msec": 1655209893954,
+      "elapsed": 53792 // EdgeTimeToFirstByteMs
+    },
+    "is_edge": false,
+    "visits_this_service": 2,
+    "fastly_ff": "f3M854ubvTI6r93AFpPS2R5cr9OccToZxPNT+3L7\/5M=!SOF!cache-sof1510020-SOF, f3M854ubvTI6r93AFpPS2R5cr9OccToZxPNT+3L7\/5M=!SOF!cache-sof1510029-SOF, d\/pSKZ8rlnWKwhuqLlOfEaT6D8DNve05rythR5w\/Q5M=!SOF!cache-sof1510029-SOF, d\/pSKZ8rlnWKwhuqLlOfEaT6D8DNve05rythR5w\/Q5M=!SOF!cache-sof1510064-SOF",
+    "datacenter": "IAD", // EdgeColoCode
+    "hostname": "cache-iad-kjyo7100068",
+    "ip": "104.156.87.68", // EdgeServerIP
+    "region_code": "US-East",
+    "is_cacheable": true,
+    "cache_status": "HIT-CLUSTER", // CacheCacheStatus
+    "is_h2": false,
+    "is_h2_push": false,
+    "fastly_error": ""
+  }
+}
