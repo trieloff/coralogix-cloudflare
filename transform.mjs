@@ -1,40 +1,26 @@
 import fs from 'fs';
 
-const cftext = fs.readFileSync('./cloudflare.jsonc', 'utf8');
+const cftext = fs.readFileSync('./cloudflare2.jsonc', 'utf8');
 const cfjson = JSON.parse(cftext);
 
 const fullobj = {
+  Cookies: {
+    'Cookie-Name': 'string',
+  },
   'RequestHeaders': {
-    // ClientRequestReferer
-    "referer": "https:\/\/blog.adobe.com\/jp\/publish\/2022\/06\/14\/cc-design-fresco-creative-relay-27-nanahara",
-    // ClientRequestUserAgent
-    "user-agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/15.5 Safari\/605.1.15",
-    // ClientDeviceType
-    "user-agent-type": "desktop",
-    // RequestHeaders.accept
-    "accept-content": "image\/webp,image\/png,image\/svg+xml,image\/*;q=0.8,video\/*;q=0.8,*\/*;q=0.5",
-    // RequestHeaders.accept-language
-    "accept-language": "en-GB,en;q=0.9",
-    // RequestHeaders.accept-encoding
-    "accept-encoding": "gzip",
-    // RequestHeaders.accept-charset
-    "accept-charset": "",
-    // RequestHeaders.If-Modified-Since
-    "if-modified-since": "",
-    // RequestHeaders.If-Connection
-    "connection": "",
-    // RequestHeaders.Forwarded
-    "forwarded": "",
-    // RequestHeaders.cdn-loop
-    "cdn-loop": "Fastly, Fastly, Fastly, Fastly",
-    // RequestHeaders.via
-    "via": "",
-    // RequestHeaders.cache-control
-    "cache_control": "",
-    "x-forwarded-host": "blog.adobe.com, main--blog--adobe.hlx.live, main--blog--adobe.hlx.live",
-    "x-forwarded-for": "93.138.115.174, 146.75.2.122, 157.52.106.64",
-    "x-push-invalidation": "enabled",
-    "x-byo-cdn-type": "fastly"
+    "accept": "string",
+    "accept-language": "string",
+    "accept-encoding": "string",
+    "accept-charset": "string",
+    "if-modified-since": "string",
+    "connection": "string",
+    "forwarded": "string",
+    "cdn-loop": "string",
+    "via": "string",
+    "x-forwarded-host": "string",
+    "x-forwarded-for": "string",
+    "x-push-invalidation": "string",
+    "x-byo-cdn-type": "string",
   },
   'ResponseHeaders': {
     "content-type": "image\/webp", // EdgeResponseContentType
@@ -55,10 +41,16 @@ const fullobj = {
   },
 };
 
+const replacements = {
+  RequestHeaders: 'ReqH',
+  ResponseHeaders: 'ResH',
+};
+
 function camelCase(str) {
-  const dashes = str.replace(/[-_](\w)/g, (match, letter) => letter.toUpperCase());
+  const shortstr = replacements[str] || str;
+  const dashes = shortstr.replace(/[-_](\w)/g, (match, letter) => letter.toUpperCase());
   // first letter is always upper case
-  return dashes.charAt(0).toUpperCase() + dashes.slice(1);
+  return (dashes.charAt(0).toUpperCase() + dashes.slice(1)).substr(0, 30);
 }
 
 function makeRegex(obj, parent = '') {
@@ -84,4 +76,84 @@ function captureType(type, name) {
   return `(?P<${name}>[^,}]+)`;
 }
 
-console.log(makeRegex(cfjson));
+class ArrayExpression {
+  constructor(arr, name, parent = '') {
+    this.name = name;
+    this.parent = parent;
+  }
+  toString() {
+    return `"${this.name}"\\s*:\\s*\\[(?P<${camelCase(this.parent) + camelCase(this.name)}>[^\\]]*)\\]`;
+  }
+}
+
+class StringExpression {
+  constructor(arr, name, parent = '') {
+    this.name = name;
+    this.parent = parent;
+  }
+
+  toString() {
+    return `"${this.name}"\\s*:\\s*"(?P<${camelCase(this.parent) + camelCase(this.name)}>[^"]*)"`;
+  }
+}
+
+class NumberExpression {
+  constructor(value, name, parent = '') {
+    this.name = name;
+    this.parent = parent;
+  }
+
+  toString() {
+    return `"${this.name}"\\s*:\\s*(?P<${camelCase(this.parent) + camelCase(this.name)}>[\\d.]+)`;
+  }
+}
+
+class BooleanExpression {
+  constructor(value, name, parent = '') {
+    this.name = name;
+    this.parent = parent;
+  }
+
+  toString() {
+    return `"${this.name}"\\s*:\\s*(?P<${camelCase(this.parent) + camelCase(this.name)}>true|false)`;
+  }
+}
+
+class ObjExpression {
+  constructor(obj, name, parent) {
+    this.name = name || '';
+    this.subexpressions = Object
+      .keys(Object.assign(fullobj[this.name] || {}, obj))
+      //.slice(0, 15)
+      .map(key => {
+        if (Array.isArray(obj[key])) {
+          return new ArrayExpression(obj[key], key, this.name);
+        }
+        if (typeof obj[key] === 'object') {
+          return new ObjExpression(obj[key], key, this.name);
+        }
+        if (typeof obj[key] === 'string') {
+          return new StringExpression(obj[key], key, this.name);
+        }
+        if (typeof obj[key] === 'boolean') {
+          return new BooleanExpression(obj[key], key, this.name);
+        }
+        return new NumberExpression(obj[key], key, this.name);
+      });
+  }
+  toString() {
+    const inner = this.subexpressions
+      .map(expr => expr.toString())
+      .map(expr => `(${expr})?`)
+      .join('\\s*,?\\s*');
+    if (this.name) {
+      return `"${this.name}"\\s*:\\s*{\\s*${inner}\\s*}`;
+    } else {
+      return `^{\\s*${inner}\\s*`;
+    }
+  }
+}
+
+//console.log(makeRegex(cfjson));
+//console.log(new ObjExpression(cfjson.RequestHeaders, 'RequestHeaders').toString());
+console.log(new ObjExpression(cfjson).toString());

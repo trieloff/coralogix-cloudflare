@@ -1,0 +1,9 @@
+{
+  "ZoneID": 537321046,
+  "ClientMTLSAuthStatus": "unknown",
+  "RequestHeaders": {
+    "accept": "*\/*",
+    "accept-encoding": "gzip, deflate",
+    "connection": "keep-alive"
+  }
+}

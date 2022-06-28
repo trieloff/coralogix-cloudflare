@@ -12,7 +12,7 @@ regex = re.compile(result.stdout.decode('utf-8').rstrip(), # re.DEBUG
 print(result.stdout.decode('utf-8'))
 
 
-with open('cloudflare.jsonc', 'r') as f:
+with open('cloudflare2.jsonc', 'r') as f:
   # save the text content of the file in a variable
   content = f.read()
 

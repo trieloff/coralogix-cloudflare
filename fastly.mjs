@@ -5,7 +5,7 @@ const fjson = JSON.parse(ftext);
 
 function strip(obj) {
   return Object.entries(obj)
-    .filter(([key, value]) => (typeof value === 'string' && value.startsWith('$')) || typeof value === 'object')
+    .filter(([key, value]) => (typeof value === 'string' && value.indexOf('$') > -1) || typeof value === 'object')
     .reduce((acc, [key, value]) => {
       if (typeof value === 'string') {
         acc[key] = value;
